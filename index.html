@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+<script>
+var ws;
+var touchCount=0;
+var colorswap = false;
+function myFunction1() {
+console.log("Mukesh");
+  var popup = document.getElementById("myPopup");
+  popup.classList.toggle("show");
+}
+function myFunction() {
+ var el = document.getElementsByTagName("canvas")[0];
+  var ctx = el.getContext("2d");
+  ctx.beginPath();
+  ctx.arc(el.width*0.8-100, 20, 20, 0, 2 * Math.PI);
+  ctx.fillStyle = "blue";
+  ctx.fill();
+  ctx.fillStyle = "red";
+  var cr = 'rgb('+
+      Math.floor(Math.random()*256)+','+
+      Math.floor(Math.random()*256)+','+
+      Math.floor(Math.random()*256)+')';
+      ctx.fillStyle = cr;
+  ctx.fill();
+ 
+  
+}
+
+myVar = setInterval(myFunction, 10);
+function UpdateDynamicLatency() { 
+ 
+ var p = document.getElementById('GFG');
+ var p1 = document.getElementById('GFG2');
+  var d = new Date();
+  var h = addZero(d.getHours(), 2);
+  var m = addZero(d.getMinutes(), 2);
+  var s = addZero(d.getSeconds(), 2);
+  var ms = addZero(d.getMilliseconds(), 3);
+ 
+  p1.innerHTML =  h + ":" + m + ":" + s + ":" + ms + "\n" 
+				
+        } 
+
+function ReadMe() { 
+ 
+ document.getElementById("mySidenav").style.width = "400px";
+  document.getElementById("main").style.marginLeft = "400px";
+//document.getElementById('GFG7').innerHTML 
+                //= 'ThWPF enables applications to respond to touch. For example, you can interact with an application by using one or more fingers on a touch-sensitive device, such as a touchscreen This walkthrough creates an application that enables the user to move, resize, or rotate a single object by using touch.'; 
+alert("This is a WebApp designed for touch latency measurment . Use this App along with the WIO with self calibration to start testing the End to End Latency ");
+        //closeNav();
+		myFunction1();
+		} 
+function addZero(x,n) {
+  while (x.toString().length < n) {
+    x = "0" + x;
+  }
+  return x;
+}
+function log(msg) {
+  var p = document.getElementById('log');
+  var d = new Date();
+  var h = addZero(d.getHours(), 2);
+  var m = addZero(d.getMinutes(), 2);
+  var s = addZero(d.getSeconds(), 2);
+  var ms = addZero(d.getMilliseconds(), 3);
+  p.innerHTML = msg + h + ":" + m + ":" + s + ":" + ms + "\n" 
+}
+ 
+function handleStart(evt) {
+  var d = new Date();
+  var h = addZero(d.getHours(), 2);
+  var m = addZero(d.getMinutes(), 2);
+  var s = addZero(d.getSeconds(), 2);
+  var ms = addZero(d.getMilliseconds(), 3);
+  log("handleStart beg")
+
+  //ws.send("handleStart"+ h + ":" + m + ":" + s + ":" + ms + "\n" );
+ var el = document.getElementsByTagName("canvas")[0];
+  el.width =window.innerWidth;
+  el.hight = window.innerHeight;
+  var ctx = el.getContext("2d");
+  ctx.beginPath();
+  ctx.rect(0, 0,  el.width*0.8,el.hight);
+  if(!colorswap)
+  {
+  ctx.fillStyle = "black";
+  }
+  else
+  {
+  ctx.fillStyle = "white";
+  }
+  
+  colorswap = !colorswap;
+  ctx.fill();   
+  log("handleStart end")
+ log("touchstart.");
+ UpdateDynamicLatency();
+ }
+function handleEnd(evt) {
+ var el = document.getElementsByTagName("canvas")[0];
+  var ctx = el.getContext("2d");
+  
+  ctx.fillStyle = "white";
+  //ctx.fill();
+     
+ var p = document.getElementById('GFG3');
+ 
+ touchCount = touchCount+1;
+  p.innerHTML =  "Touch Count::"+touchCount;
+				
+ log("handleEnd.");
+ UpdateDynamicLatency();
+ }
+function startup() {
+  var el =document.body;
+  el.addEventListener("touchstart", handleStart, false);
+  el.addEventListener("touchend", handleEnd, false);
+  // Let us open a web socket
+   ws = new WebSocket("ws://localhost:8088");
+   log("startup.");
+  }
+ function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+   document.getElementById("main").style.marginLeft = "0";
+   document.getElementById('GFG7').innerHTML ="";
+}
+function OnLoadFunction() {
+   var el =document.body;
+  el.addEventListener("touchstart", handleStart, false);
+  el.addEventListener("touchend", handleEnd, false);
+  // Let us open a web socket
+   //ws = new WebSocket("ws://localhost:8088");
+   log("startup.");
+   //alert("Page is loaded");
+   
+}
+
+</script>
+<head>
+	<title> Touch Latency Tool</title>
+	<style> 
+	/*
+*{
+	margin:0;
+	padding:0;
+}
+*/
+
+body{
+	background-color:#f4f4f4;
+	color:#555555;
+
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:16px;
+	font-weight:normal;
+	/* Same as above */
+	font: normal 16px Arial, Helvetica, sans-serif;
+
+	line-height:1.6em;
+	margin:0;
+}
+
+.container{
+	width:100%;
+	padding-left:10px;
+	
+	transition: margin-left .5s;
+	padding: 16px;
+}
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+
+.box-1{
+	background-color:#0071c5;
+	color:#fff;
+
+	border-right:5px blue solid;
+	border-left:5px blue solid;
+	border-top:5px blue solid;
+	border-bottom:5px blue solid;
+	border-width:3px;
+	border-bottom-width:2px;
+	border-top-style:dotted;
+
+	border: 5px #0071c5 solid;
+
+	padding-top:2px;
+	padding-bottom:2px;
+	padding-right:2px;
+	padding-left:2px;
+
+	
+
+	
+	border-radius:25px;
+}
+
+.box-1 h1{
+	font-family:Tahoma;
+	font-weight:800;
+	font-style:bold;
+	text-decoration:none;
+	text-transform:uppercase;
+	letter-spacing: 0.2em;
+	
+}
+
+
+
+
+/* Create two unequal columns that floats next to each other */
+.column {
+  float: left;
+  padding: 10px;
+  height: 1000px; /* Should be removed. Only for demonstration */
+  color:red;
+  background-color: #008CBA;
+}
+
+.left {
+  width: 15%;
+  background-color: #008CBA;
+}
+
+.right {
+  width: 80%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.button {
+  border: none;
+  color: white;
+  padding: 20px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 4px;
+  margin-top: 25px;
+  cursor: pointer;
+}
+
+.button1 {background-color: #0071c5;border:2px solid#fff;border-radius:10px;margin-top: 150px;} /* Green */
+.button2 {background-color: #0071c5;border:2px solid#fff;border-radius:10px;margin-top: 150px;} /* Blue */
+
+.label {
+  color: blue;
+  background: green;
+  padding: 10px;
+  font-family: Arial;
+  
+}
+.other {background-color: #e7e7e7; color: blue;} /* Gray */ 
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 1s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 1s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+/* Popup container - can be anything you want */
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* The actual popup */
+.popup .popuptext {
+  visibility: hidden;
+  width: 800px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;} 
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+	
+	</style>
+</head>
+<body onload="OnLoadFunction()">
+	<div id="main" class="container">
+		<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a onclick="ReadMe()">About</a>
+  
+ 
+  
+  <div> 
+  <span class="popuptext" id="myPopup">This is a WebApp designed for touch latency measurment . Use this App along with the WIO with self calibration to start testing the End to End Latency</span>
+</div>
+</div>
+	
+
+
+		
+		<div class="box-1">
+			<h1> Touch Latency Tool @</h1>
+			<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776</span>
+		</div>
+		
+		<div class="row">
+		<div class="column left" style="background-color:lightblue;">
+		<h2> Touch Latency Test </h2>
+		<p> Touch Latency Test</p>
+	
+		<span class="label other" id = "GFG" >Touch Time </span>
+		<span class="label other" id = "GFG2" ></span>
+		<span class="label other" id = "GFG4" ></span>
+		<span class="label other" id = "GFG5" ></span>
+		<span class="label other" id = "GFG3" >Touch Count::</span>
+		
+		<p>   </p>
+		
+		</div>
+		<div class="column right" style="background-color:white;">
+		
+		<h2>Frame Window</h2>
+		
+		<canvas id="myCanvas" width="1000" height="1000" style="border:0px solid #000000;"></canvas>
+		
+	  </div>
+</div>
+
+		
+</div><!-- ./container -->
+
+</body>
+Log: <pre id="log" style="border: 1px solid #ccc;"></pre>
+</html>
