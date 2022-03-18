@@ -2,6 +2,7 @@
 <html>
 <script>
 var ws;
+var endTime;
 var touchCount=0;
 var colorswap = false;
 function myFunction1() {
@@ -23,23 +24,43 @@ function myFunction() {
       Math.floor(Math.random()*256)+')';
       ctx.fillStyle = cr;
   ctx.fill();
- 
   
+  //var p = document.getElementById('GFG');
+ var p1 = document.getElementById('GFG99');
+  var d = new Date();
+  var h = addZero(d.getHours(), 2);
+  var m = addZero(d.getMinutes(), 2);
+  var s = addZero(d.getSeconds(), 2);
+  var ms = addZero(d.getMilliseconds(), 3);
+  var seconds = (d.getTime() - endTime.getTime()) / 1000;
+  if(seconds >10)
+  {
+	p1.style.color = "green";
+	p1.style.background  = "lightblue";
+	p1.style.fontWeight  = "bold";
+  }
+  else
+  {
+  p1.style.color = "red";
+  p1.style.background  = "lightblue";
+  }
+  
+  p1.innerHTML =  h + ":" + m + ":" + s + ":" + ms + "\n"
 }
 
 myVar = setInterval(myFunction, 10);
 function UpdateDynamicLatency() { 
  
- var p = document.getElementById('GFG');
+ //var p = document.getElementById('GFG');
  var p1 = document.getElementById('GFG2');
   var d = new Date();
   var h = addZero(d.getHours(), 2);
   var m = addZero(d.getMinutes(), 2);
   var s = addZero(d.getSeconds(), 2);
   var ms = addZero(d.getMilliseconds(), 3);
- 
+  p1.style.background  = "lightblue";
   p1.innerHTML =  h + ":" + m + ":" + s + ":" + ms + "\n" 
-				
+	endTime = d;			
         } 
 
 function ReadMe() { 
@@ -108,6 +129,9 @@ function handleEnd(evt) {
  var p = document.getElementById('GFG3');
  
  touchCount = touchCount+1;
+ p.style.color = "blue";
+ p.style.background  = "lightblue";
+	p.style.fontWeight  = "bold";
   p.innerHTML =  "Touch Count::"+touchCount;
 				
  log("handleEnd.");
@@ -389,13 +413,17 @@ body{
 		<div class="row">
 		<div class="column left" style="background-color:lightblue;">
 		<h2> Touch Latency Test </h2>
+
 		<p> Touch Latency Test</p>
 	
-		<span class="label other" id = "GFG" >Touch Time </span>
-		<span class="label other" id = "GFG2" ></span>
-		<span class="label other" id = "GFG4" ></span>
-		<span class="label other" id = "GFG5" ></span>
-		<span class="label other" id = "GFG3" >Touch Count::</span>
+		<span class="label other" id = "GFG" style="background-color:lightblue;" >Touch Time </span>
+		<br>
+		<span class="label other" id = "GFG2" style="background-color:lightblue;"  ></span>
+		<br>
+		<h2 class="label other" id = "GFG3" style="background-color:lightblue;"  >Touch Count</h2>
+		<h2 class="label other" id = "GFG99" style="background-color:lightblue;" > </h2>
+
+
 		
 		<p>   </p>
 		
